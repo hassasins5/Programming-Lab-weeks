@@ -1,0 +1,76 @@
+package programlab1.pkg2;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author hasan
+ */
+public class ProgramLab12 {
+
+public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> stopName = new ArrayList<String>();
+        ArrayList<Integer> pBoarding = new ArrayList<Integer>();
+        ArrayList<Integer> pGettingOff = new ArrayList<Integer>();
+        ArrayList<Integer> currentPassenger = new ArrayList<Integer>();
+        
+        System.out.println("please enter the capacity of seets.");
+        int capacity = scanner.nextInt();
+
+        System.out.println("please enter the number of station");
+        int stationNumber = scanner.nextInt();
+        scanner.nextLine();
+
+        for (int i = 1; i <= stationNumber; i++) {
+            System.out.println("lütfen " + i + ". durak ismini giriniz.");
+            String stoppName = scanner.nextLine();
+            stopName.add(stoppName);
+        }
+
+        int occupancy = 0;
+        int invalidEnterance = 0;
+        int asıyor = 0;
+        int binenlertop = 0;
+
+        for (int j = 1; j <= stationNumber; j++) {
+            System.out.println("lütfen " + j + ". durakta binecek kişi sayısını giriniz.");
+            int ppBoarding = scanner.nextInt();
+            binenlertop += ppBoarding;
+
+            System.out.println("lütfen " + j + ". durakta inecek kişi sayısını giriniz.");
+            int ppGettingOf = scanner.nextInt();
+
+            occupancy = ppBoarding + occupancy - ppGettingOf;
+
+            if (occupancy < 0) {
+                System.out.println("please enter the valid number yolcu sayısı negatif olamaz");
+                invalidEnterance++;
+            }
+
+            pGettingOff.add(ppGettingOf);
+            pBoarding.add(ppBoarding);
+
+            if (occupancy > capacity) {
+                System.out.println("dikkat binen yolcu sayısı kapasiteyi aştı");
+                asıyor++;
+            }
+
+            currentPassenger.add(occupancy);
+            binenlertop += ppBoarding;
+        }
+
+        for (int l = 0; l < stationNumber; l++) {
+            System.out.println((l + 1) + ". durağın ismi: " +
+                    stopName.get(l) + " " + (l + 1) + ". durakta binen kişi sayısı: "
+                    + pBoarding.get(l) + " " + (l + 1) + ". durakta inecek kişi sayısı: "
+                    + pGettingOff.get(l) + " " + (l + 1) + ". duraktaki mevcut yolcu sayısı "
+                    + currentPassenger.get(l));
+        }
+
+        System.out.println("otobüste son diuraktaki kişi sayısı dikkat datayı kontrol et " + occupancy);
+        System.out.println("kapasiteyi aşan  durak sayısı: " + asıyor);
+        System.out.println("ortalama yoğunluk: " + binenlertop / stationNumber);
+    }
+}
