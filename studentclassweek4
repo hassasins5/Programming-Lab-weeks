@@ -1,0 +1,22 @@
+package hasansahin;
+
+public class Student {
+    public String name;
+    public String studentID;
+    int counter;
+
+    public Student(String name, String studentID) {
+        this.name = name;
+        this.studentID = studentID;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" + "name=" + name + ", studentID=" + studentID + '}';
+    }
+}
+
+//kapasitesi dolduysa
+//yazdığı kurs adı yoksa
+//daha önce bu kursa bu öğrenci kaydoldu mu
+//tüm kurslar detaylı en sonda söylenmeli
